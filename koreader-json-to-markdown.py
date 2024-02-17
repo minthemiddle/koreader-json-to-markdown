@@ -32,6 +32,9 @@ def process_json(input_file, output_file):
         markdown_output += f"## {chapter}\n\n"
         for text in texts:
             markdown_output += f"{text}\n\n"
+            
+    # Remove duplicate empty lines
+    markdown_output = re.sub(r'\n{2,}', '\n\n', markdown_output)
 
     # Write to output file or overwrite input file if no output file is specified
     output_path = output_file

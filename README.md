@@ -22,4 +22,5 @@ text.
 
 **Caveats**
 Highlights and own notes are not distinguishable.  
-Line splitting is done by character (`.`) and will produce errors.
+Line splitting is done by characters with following spaces (`. : ! ?`).  
+This might produce some unwanted breaks.

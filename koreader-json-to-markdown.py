@@ -1,5 +1,6 @@
 import click
 import json
+import re
 
 @click.command()
 @click.option('--input_file', '-i', type=click.Path(exists=True))
@@ -20,11 +21,14 @@ def process_json(input_file, output_file):
     chapters = {}
     for entry in entries:
         chapter = entry['chapter']
-        text = entry['text'].replace('.', '.\n')
+        text = entry['text']
+        # Split text into sentences using regular expressions
+        sentences = re.split(r'(?<=[.!?:]) +', text)
+        formatted_text = '\n'.join(sentences)
         if chapter in chapters:
-            chapters[chapter].append(text)
+            chapters[chapter].append(formatted_text)
         else:
-            chapters[chapter] = [text]
+            chapters[chapter] = [formatted_text]
 
     # Prepare Markdown output
     markdown_output = f"# {title} - {author}\n\n"

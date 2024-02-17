@@ -6,8 +6,9 @@ The script converts to Markdown.
 Markdown is grouped by chapters.  
 Every sentence in an entry goes on an own line.  
 
-**Usage**
-`python3 koreader-json-to-markdown.py -i mortals.json -o mortals.md`
+**Usage**  
+`python3 koreader-json-to-markdown.py FILE.json`  
+This will save to `FILE.md`.  
 
 **Output format**
 ```md
@@ -15,6 +16,7 @@ Every sentence in an entry goes on an own line.
 
 ## chapter
 
+text.
 text.
 
 text.

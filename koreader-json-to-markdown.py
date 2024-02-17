@@ -1,11 +1,11 @@
 import click
 import json
 import re
+import os
 
 @click.command()
-@click.option('--input_file', '-i', type=click.Path(exists=True))
-@click.option('--output_file', '-o', type=click.Path())
-def process_json(input_file, output_file):
+@click.argument('input_file', type=click.Path(exists=True))
+def process_json(input_file):
     """
     Processes a JSON file to extract 'text' and 'chapter' from each entry,
     and outputs the result in a specified Markdown format.
@@ -39,13 +39,16 @@ def process_json(input_file, output_file):
             
     # Remove duplicate empty lines
     markdown_output = re.sub(r'\n{2,}', '\n\n', markdown_output)
+    
+    # Determine the output file name based on the input file name
+    base = os.path.splitext(input_file)[0]
+    output_file = f"{base}.md"
 
     # Write to output file or overwrite input file if no output file is specified
-    output_path = output_file
-    with open(output_path, 'w') as file:
+    with open(output_file, 'w') as file:
         file.write(markdown_output)
 
-    print(f"Processed file saved to {output_path}")
+    print(f"Processed file saved to {output_file}")
 
 if __name__ == '__main__':
     process_json()

@@ -24,7 +24,7 @@ def process_json(input_file):
         text = entry['text']
         # Split text into sentences using regular expressions
         sentences = re.split(r'(?<=[.!?:]) +', text)
-        formatted_text = '\n'.join(sentences)
+        formatted_text = '\n'.join(f"> {sentence}" for sentence in sentences)
         if chapter in chapters:
             chapters[chapter].append(formatted_text)
         else:

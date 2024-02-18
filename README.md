@@ -5,6 +5,7 @@ The JSON has entries (highlights and notes).
 The script converts to Markdown.  
 Markdown is grouped by chapters.  
 Every sentence in an entry goes on an own line.  
+Every sentence gets quotes.  
 
 **Usage**  
 `python3 koreader-json-to-markdown.py FILE.json`  
